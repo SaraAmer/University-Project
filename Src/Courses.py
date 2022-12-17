@@ -25,16 +25,14 @@ class Courses:
 
     def print_list(self):
         temp = self.head
-        print(temp)
         while temp is not None:
             print(temp.get_name())
-            # assert isinstance(temp.next_node, Node)
             temp = temp.get_next_node()
 
     def search_by_name(self, name):
         temp = self.head
         while temp is not None:
-            if temp.name == name:
+            if temp.get_name() == name:
                 return temp
             temp = temp.get_next_node()
         return False
@@ -42,31 +40,35 @@ class Courses:
     def search_by_code(self, code):
         temp = self.head
         while temp is not None:
-            if temp.code == code:
+            if temp.get_code() == code:
                 return temp
             temp = temp.get_next_node()
         return False
 
     def update_course(self):
-        name = input("Enter the Course Name")
+        name = input("Enter the Course Name you want to update: ")
         course = self.search_by_name(name)
         if course:
             course.update_course()
         else:
             print("Invalid Course Name Please try again")
 
-    def delete_course(self, course_node: CoursesNode):
-        temp = self.head
-        if temp.code == course_node.code:
-            self.head = temp.next_node
-            return True
-
-        while temp.next_node is not None:
-            if temp.next_node.code == course_node.code:
-                temp.next_node = course_node.next_node
-                course_node.next_node = None
+    def delete_course(self):
+        course_name = input("Enter the course Name you want to delete: ")
+        deleted_course = self.search_by_name(course_name)
+        if deleted_course:
+            temp = self.head
+            if temp.get_code() == deleted_course.get_code():
+                self.head = temp.get_next_node()
                 return True
-            temp = temp.next_node
+            while temp.get_next_node() is not None:
+                if temp.get_next_node().get_code() == deleted_course.get_code():
+                    temp.set_next_node(deleted_course.get_next_node())
+                    deleted_course.set_next_node(None)
+                    return True
+                temp = temp.get_next_node()
+        else:
+            print("invalid course")
         return False
 
     def is_empty(self):
