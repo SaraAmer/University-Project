@@ -1,35 +1,33 @@
 from Src.Courses.Courses import Courses
 from Src.Students.Students import Student
 from Src.StudentCourses.SudentCourses import StudentCourses
+from Src.Collages.College import Colleges
 
 choice = 1
 course = Courses()
 students = Student()
+collage = Colleges()
+
+
+def invalid_choice():
+    print('please Enter a valid Choice')
+
+
 while choice != 0:
-    print('1) List Courses')
-    print('2) Add New Course')
-    print('3) Update Course')
-    print('4) Delete Course')
-    print('5) List Students')
-    print('6) Add New Student')
-    print('7) Update Student')
-    print('8) Delete Student')
-    print('9) Assign Student to course')
-    print('10) Print Course Students')
-    print('11) Print Student Courses')
-    choice = int(input('What do you want to do? '))
-    print(choice, 'choice')
+    print('1) Choose Collage')
+    print('2) List Collages')
+    print('3) Add Collage')
+    print('4) Update Collage')
+    print('5) delete Collage')
+    try:
+        choice = int(input('Enter Your Choice: '))
+    except ValueError:
+        invalid_choice()
     switcher = {
-        1: course.print_list,
-        2: course.add_new_course,
-        3: course.update_course,
-        4: course.delete_course,
-        5: Student.print_list,
-        6: students.add_new_student,
-        7: students.update_student,
-        8: students.delete_student,
-        9: StudentCourses.assign_student_to_course,
-        10: Courses.print_course_students,
-        11: Student.print_student_courses
+        1: collage.choice_collage,
+        2: collage.print_list,
+        3: collage.add_new_college,
+        4: collage.update_college,
+        5: collage.delete_college
     }
-    switcher.get(choice, 'invalid')()
+    switcher.get(choice, invalid_choice)()

@@ -4,8 +4,8 @@ class StudentNode:
         self.__id = data['id']
         self.__name = data['name']
         self.__gender = data['gender']
-        self.__collage = data['collage']
-        self.__department = data['department']
+        self.__collage = None
+        self.__department = None
         self.__number = data['number']
         self.__next_node = None
         self.__previous_node = None
@@ -65,14 +65,11 @@ class StudentNode:
             'id': input("Enter the Student ID: "),
             'name': input("Enter the Student Name: "),
             'gender': input("Enter the Student Gender: "),
-            'collage': input("Enter the student collage: "),
-            'number': input("Enter the Student number : "),
-            'department': input("Enter the Course department: ")
+            'number': input("Enter the Student number : ")
         }
         return student_data
 
     def update_student_data(self, data):
-        print(data)
         self.set_name(data['name'])
         self.set_department(data['department'])
         self.set_id(data['id'])

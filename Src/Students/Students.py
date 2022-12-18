@@ -26,8 +26,8 @@ class Student:
         return Student.head
 
     @staticmethod
-    def search_by_name(name):
-        temp = Student.head
+    def search_by_name(name, student_list):
+        temp = student_list
         while temp is not None:
             if temp.get_name() == name:
                 return temp
@@ -35,29 +35,33 @@ class Student:
         return False
 
     @staticmethod
-    def search_by_id(student_id):
-        temp = Student.head
+    def search_by_id(student_id, student_list):
+        temp = student_list
         while temp is not None:
             if temp.get_id() == student_id:
                 return temp
             temp = temp.get_next_node()
         return False
 
-    def update_student(self):
+    @staticmethod
+    def update_student(student_list):
         name = input("Enter the Student Name you want to update: ")
-        student = self.search_by_name(name)
+        student = Student.search_by_name(name, student_list)
         if student:
             student.update_student()
         else:
             print("Invalid Student Name Please try again")
 
-    def delete_student(self):
+    @staticmethod
+    def delete_student(student_list):
         student_name = input("Enter the Student Name you want to delete: ")
-        deleted_student = self.search_by_name(student_name)
+        deleted_student = Student.search_by_name(student_name, student_list)
         if deleted_student:
-            temp = Student.head
+            department = deleted_student.get_department()
+            temp = department.get_students()
             if temp.get_id() == deleted_student.get_id():
-                Student.head = temp.get_next_node()
+                department.set_students(temp.get_next_node())
+                deleted_student.set_next_node(None)
                 return True
             while temp.get_next_node() is not None:
                 if temp.get_next_node().get_id() == deleted_student.get_id():
@@ -80,9 +84,9 @@ class Student:
         return self.size == 0
 
     @staticmethod
-    def print_student_courses():
+    def print_student_courses(student_list):
         student_id = input("please Enter the Student id")
-        student = Student.search_by_id(student_id)
+        student = Student.search_by_id(student_id, student_list)
         if student:
             student.print_student_courses()
         else:

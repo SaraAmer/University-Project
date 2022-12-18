@@ -51,19 +51,16 @@ class StudentCourses:
     
     #@todo multi level of identition is not a clean code please refactor this to functions
     @staticmethod
-    def assign_student_to_course():
+    def assign_student_to_course(course_list, student_list):
         entered_data = StudentCourses.get_course_student_data()
         student_course = StudentCourses(entered_data)
         course_code = student_course.get_course_code()
         student_id = student_course.get_student_id()
-        course = Courses.Courses.search_by_code(course_code)
-        student = Students.Student.search_by_id(student_id)
+        course = Courses.Courses.search_by_code(course_code, course_list)
+        student = Students.Student.search_by_id(student_id, student_list)
         if course and student:
             course_last_student = course.get_course_last_student()
-            print(course_last_student, "course_last_student")
             student_last_course = student.get_student_last_course()
-            print(student_last_course, "student_last_course")
-
             if course_last_student is None:
                 course.set_students(student_course)
             else:

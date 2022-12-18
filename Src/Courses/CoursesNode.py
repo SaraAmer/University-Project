@@ -5,7 +5,7 @@ class CourseNode:
         self.__name = data['name']
         self.__instructor = data['instructor']
         self.__credit_hours = data['credit_hours']
-        self.__department = data['department']
+        self.__department = None
         self.__next_node = None
         self.__previous_node = None
         self.__students = None
