@@ -1,8 +1,13 @@
 import Courses
 import Students
+import Department
+import College
 choice = 1
 course = Courses.Courses()
 students = Students.Student()
+Department = Department.Department()
+College = College.Colleges()
+
 while choice != 0:
     print('1) List Courses')
     print('2) Add New Course')
