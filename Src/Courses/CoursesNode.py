@@ -40,11 +40,11 @@ class CourseNode:
     def get_department(self):
         return self.__department
 
-    def set_department(self, department):
-        self.__department = department
+    def set_previous_node(self, previous_node):
+        self.__previous_node = previous_node
 
-    def get_department(self):
-        return self.__department
+    def get_previous_node(self):
+        return self.__previous_node
 
     def get_next_node(self):
         return self.__next_node
@@ -79,6 +79,20 @@ class CourseNode:
     def update_course(self):
         course_new_data = self.get_user_course_data()
         self.update_course_data(course_new_data)
+
+    def get_course_last_student(self):
+        temp = self.__students
+        if temp is None:
+            return temp
+        while temp.get_next_course() is not None:
+            temp = temp.get_next_course()
+        return temp
+
+    def print_course_students(self):
+        temp = self.get_students()
+        while temp is not None:
+            print(temp.get_student_id())
+            temp = temp.get_next_student()
 
 
 

@@ -84,5 +84,21 @@ class StudentNode:
         student_new_data = self.get_user_student_data()
         self.update_student_data(student_new_data)
 
+    def get_student_last_course(self):
+        temp = self.__courses
+        if temp is None:
+            return temp
+        while temp.get_next_student() is not None:
+            temp = temp.get_next_student()
+
+        return temp
+
+    def print_student_courses(self):
+        temp = self.get_courses()
+        while temp is not None:
+            print(temp.get_course_code())
+            temp = temp.get_next_course()
+
+
 
 

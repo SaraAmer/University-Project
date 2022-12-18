@@ -1,44 +1,42 @@
-import StudentNode
+from Src.Students.StudentNode import StudentNode
 
 
 class Student:
+    head = None
+
     def __init__(self):
-        self.head = None
         self.size = 0
 
     def add_to_head(self, student_node: StudentNode):
-        self.head = student_node
+        Student.head = student_node
         self.size += 1
 
     def add_new_student(self):
-        new_student_data = StudentNode.StudentNode.get_user_student_data()
-        student_node = StudentNode.StudentNode(new_student_data)
-        student_node.set_next_node(self.head)
+        new_student_data = StudentNode.get_user_student_data()
+        student_node = StudentNode(new_student_data)
+        student_node.set_next_node(Student.head)
         self.add_to_head(student_node)
-        self.print_list()
+        Student.print_list()
 
     def get_size(self):
         return self.size
 
-    def get_head(self):
-        return self.head
+    @staticmethod
+    def get_head():
+        return Student.head
 
-    def print_list(self):
-        temp = self.head
-        while temp is not None:
-            print(temp.get_name())
-            temp = temp.get_next_node()
-
-    def search_by_name(self, name):
-        temp = self.head
+    @staticmethod
+    def search_by_name(name):
+        temp = Student.head
         while temp is not None:
             if temp.get_name() == name:
                 return temp
             temp = temp.get_next_node()
         return False
 
-    def search_by_id(self, student_id):
-        temp = self.head
+    @staticmethod
+    def search_by_id(student_id):
+        temp = Student.head
         while temp is not None:
             if temp.get_id() == student_id:
                 return temp
@@ -57,9 +55,9 @@ class Student:
         student_name = input("Enter the Student Name you want to delete: ")
         deleted_student = self.search_by_name(student_name)
         if deleted_student:
-            temp = self.head
+            temp = Student.head
             if temp.get_id() == deleted_student.get_id():
-                self.head = temp.get_next_node()
+                Student.head = temp.get_next_node()
                 return True
             while temp.get_next_node() is not None:
                 if temp.get_next_node().get_id() == deleted_student.get_id():
@@ -71,5 +69,21 @@ class Student:
             print("invalid student")
         return False
 
+    @staticmethod
+    def print_list():
+        temp = Student.head
+        while temp is not None:
+            print(temp.get_name())
+            temp = temp.get_next_node()
+
     def is_empty(self):
         return self.size == 0
+
+    @staticmethod
+    def print_student_courses():
+        student_id = input("please Enter the Student id")
+        student = Student.search_by_id(student_id)
+        if student:
+            student.print_student_courses()
+        else:
+            print("Invalid course code")
