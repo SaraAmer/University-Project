@@ -83,6 +83,3 @@ class StudentNode:
     def update_student(self):
         student_new_data = self.get_user_student_data()
         self.update_student_data(student_new_data)
-
-
-
