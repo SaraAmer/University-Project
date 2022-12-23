@@ -4,7 +4,7 @@ from Src.StudentCourses.SudentCourses import StudentCourses
 from Src.Collages.College import Colleges
 from Src.Helper import CommnFunctions
 
-choice = 1
+choice = 0
 course = Courses()
 students = Student()
 collage = Colleges()
