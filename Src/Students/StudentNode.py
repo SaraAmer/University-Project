@@ -4,8 +4,8 @@ class StudentNode:
         self.__id = data['id']
         self.__name = data['name']
         self.__gender = data['gender']
-        self.__collage = data['collage']
-        self.__department = data['department']
+        self.__collage = None
+        self.__department = None
         self.__number = data['number']
         self.__next_node = None
         self.__previous_node = None
@@ -65,14 +65,11 @@ class StudentNode:
             'id': input("Enter the Student ID: "),
             'name': input("Enter the Student Name: "),
             'gender': input("Enter the Student Gender: "),
-            'collage': input("Enter the student collage: "),
-            'number': input("Enter the Student number : "),
-            'department': input("Enter the Course department: ")
+            'number': input("Enter the Student number : ")
         }
         return student_data
 
     def update_student_data(self, data):
-        print(data)
         self.set_name(data['name'])
         self.set_department(data['department'])
         self.set_id(data['id'])
@@ -83,6 +80,22 @@ class StudentNode:
     def update_student(self):
         student_new_data = self.get_user_student_data()
         self.update_student_data(student_new_data)
+
+    def get_student_last_course(self):
+        temp = self.__courses
+        if temp is None:
+            return temp
+        while temp.get_next_student() is not None:
+            temp = temp.get_next_student()
+
+        return temp
+
+    def print_student_courses(self):
+        temp = self.get_courses()
+        while temp is not None:
+            print(temp.get_course_code())
+            temp = temp.get_next_course()
+
 
 
 
