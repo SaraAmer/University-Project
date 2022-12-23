@@ -81,10 +81,10 @@ class Department:
 
     def choice_department(self, department_list):
         self.print_list()
-        department_code = input('Enter the Department')
+        department_code = input('Enter the Department Code')
         department = search_by_code(department_code, department_list)
         if department:
-            department.departmant_option()
+            department.department_option()
         else:
             print('Please Enter A Valid Department Code')
 

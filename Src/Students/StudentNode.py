@@ -85,8 +85,8 @@ class StudentNode:
         temp = self.__courses
         if temp is None:
             return temp
-        while temp.get_next_student() is not None:
-            temp = temp.get_next_student()
+        while temp.get_next_course() is not None:
+            temp = temp.get_next_course()
 
         return temp
 

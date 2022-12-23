@@ -3,13 +3,14 @@ from Src.Students.StudentNode import StudentNode
 from Src.Courses.Courses import Courses
 from Src.Students.Students import Student
 from Src.StudentCourses.SudentCourses import StudentCourses
+from Src.Helper import CommnFunctions
+
 
 class DepartmentNode:
 
     def __init__(self, data):
         self.__code = data['code']
         self.__name = data['name']
-        self.__instructor = data['instructor']
         self.__number = data['number']
         self.__college = None
         self.__next_node = None
@@ -29,12 +30,6 @@ class DepartmentNode:
 
     def get_name(self):
         return self.__name
-
-    def set_instructor(self, instructor):
-        self.__instructor = instructor
-
-    def get_instructor(self):
-        return self.__instructor
 
     def set_number(self, number):
         self.__number = number
@@ -77,7 +72,6 @@ class DepartmentNode:
         course_data = {
             'name': input("Enter the department Name: "),
             'code': input("Enter the department code: "),
-            'instructor': input("Enter the department instructor: "),
             'number': input("Enter the department number: ")
         }
         return course_data
@@ -86,7 +80,6 @@ class DepartmentNode:
         self.set_name(data['name'])
         self.set_number(data['number'])
         self.set_code(data['code'])
-        self.set_instructor(data['instructor'])
 
     def update_department(self):
         course_new_data = self.get_user_department_data()
@@ -131,10 +124,8 @@ class DepartmentNode:
         new_student.set_department(self)
         print(new_student.get_department())
         if last_student is None:
-            print('here1')
             self.__students = new_student
         else:
-            print("heree2")
             last_student.set_next_node(new_student)
 
     def print_department_students(self):
@@ -164,30 +155,36 @@ class DepartmentNode:
     def print_student_courses(self):
         Student.print_student_courses(self.__students)
 
-    def departmant_option(self):
-        print('1) List Courses')
-        print('2) Add New Course')
-        print('3) Update Course')
-        print('4) Delete Course')
-        print('5) List Students')
-        print('6) Add New Student')
-        print('7) Update Student')
-        print('8) Delete Student')
-        print('9) Assign Student to course')
-        print('10) Print Course Students Codes')
-        print('11) Print Student Courses')
-        choice = int(input('What do you want to do?'))
-        switcher = {
-            1: self.print_department_courses,
-            2: self.add_course,
-            3: self.update_department_course,
-            4: self.delete_department_course,
-            5: self.print_department_students,
-            6: self.add_student,
-            7: self.update_department_student,
-            8: self.delete_department_student,
-            9: self.assign_course_to_student,
-            10: self.print_course_students,
-            11: self.print_student_courses
-        }
-        switcher.get(choice, print('Invalid Option'))()
+    def department_option(self):
+        choice = 0
+        while choice != 12:
+            print('1) List Courses')
+            print('2) Add New Course')
+            print('3) Update Course')
+            print('4) Delete Course')
+            print('5) List Students')
+            print('6) Add New Student')
+            print('7) Update Student')
+            print('8) Delete Student')
+            print('9) Assign Student to course')
+            print('10) Print Course Students Codes')
+            print('11) Print Student Courses')
+            print('12) Back to Departments')
+            try:
+                choice = int(input('What do you want to do?'))
+            except ValueError:
+                print('please Enter A valid Choice')
+            switcher = {
+                1: self.print_department_courses,
+                2: self.add_course,
+                3: self.update_department_course,
+                4: self.delete_department_course,
+                5: self.print_department_students,
+                6: self.add_student,
+                7: self.update_department_student,
+                8: self.delete_department_student,
+                9: self.assign_course_to_student,
+                10: self.print_course_students,
+                11: self.print_student_courses
+            }
+            switcher.get(choice, CommnFunctions.invalid_choice)()

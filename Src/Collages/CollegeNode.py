@@ -1,5 +1,6 @@
 from Src.Departments.DepartmentNode import DepartmentNode
 from Src.Departments.Department import Department
+from Src.Helper import CommnFunctions
 
 
 class CollegeNode:
@@ -93,29 +94,26 @@ class CollegeNode:
         department = Department()
         department.choice_department(self.__departments)
 
-    @staticmethod
-    def invalid_code():
-        print("Invalid choice")
-
     def collage_options(self):
         department = Department()
-        print('1) List Collage Department')
-        print('2) Choice Department')
-        print('3) Add Department')
-        print('4) Update Department')
-        print('5) Delete Department')
-        print('6) Back to Collages')
         choice = 0
-        try:
-            choice = int(input('What do you want to do? '))
-        except ValueError:
-            print('please Enter A valid Choice')
+        while choice != 6:
+            print('1) List Collage Department')
+            print('2) Choice Department')
+            print('3) Add Department')
+            print('4) Update Department')
+            print('5) Delete Department')
+            print('6) Back to Collages')
+            try:
+                choice = int(input('What do you want to do? '))
+            except ValueError:
+                print('please Enter A valid Choice')
 
-        switcher = {
-            1: self.print_collage_department,
-            2: self.choice_department,
-            3: self.add_department,
-            4: self.update_collage_department,
-            5: self.delete_collage_department
-        }
-        switcher.get(choice, CollegeNode.invalid_code)()
+            switcher = {
+                1: self.print_collage_department,
+                2: self.choice_department,
+                3: self.add_department,
+                4: self.update_collage_department,
+                5: self.delete_collage_department
+            }
+            switcher.get(choice, CommnFunctions.invalid_choice)()

@@ -76,7 +76,7 @@ class Colleges:
 
     def choice_collage(self):
         self.print_list()
-        collage_id = input('Enter the Collage id')
+        collage_id = input('Enter the Collage id ')
         collage = self.search_by_id(collage_id)
         if collage:
             collage.collage_options()

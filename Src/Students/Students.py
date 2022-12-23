@@ -85,7 +85,7 @@ class Student:
 
     @staticmethod
     def print_student_courses(student_list):
-        student_id = input("please Enter the Student id")
+        student_id = input("please Enter the Student id: ")
         student = Student.search_by_id(student_id, student_list)
         if student:
             student.print_student_courses()

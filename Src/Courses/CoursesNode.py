@@ -64,14 +64,12 @@ class CourseNode:
             'name': input("Enter the Course Name: "),
             'code': input("Enter the Course code: "),
             'instructor': input("Enter the Course instructor: "),
-            'credit_hours': input("Enter the Course credit hours: "),
-            'department': input("Enter the Course department: ")
+            'credit_hours': input("Enter the Course credit hours: ")
         }
         return course_data
 
     def update_course_data(self, data):
         self.set_name(data['name'])
-        self.set_department(data['department'])
         self.set_code(data['code'])
         self.set_instructor(data['instructor'])
         self.set_credit_hour(data['credit_hours'])
